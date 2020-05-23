@@ -45,7 +45,7 @@ export class PostService{
                this.updatedPost1.next([...this.posts1]);
            })
    
-           },3000)
+           },30000)
        
            
 
