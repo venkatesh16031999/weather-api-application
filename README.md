@@ -1,5 +1,10 @@
 # weather-api-application
 
+# Start The Apllication using below command
+
+# ionic serve
+
+
 # Ionic
 
 [Ionic](https://ionicframework.com/) is the open-source mobile app development framework that makes it easy to
