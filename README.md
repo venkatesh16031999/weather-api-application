@@ -1,8 +1,8 @@
 # weather-api-application
 
-# Start The Apllication using below command
+### Start The Apllication using below command
 
-# ionic serve
+### ionic serve
 
 
 # Ionic
