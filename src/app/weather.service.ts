@@ -15,6 +15,11 @@ export class PostService{
     private updatedPost3= new Subject();
     private updatedPost4= new Subject();
 
+    private interval1;
+    private interval2;
+    private interval3;
+    private interval4;
+
     constructor( private http:HttpClient ){}
 
      getReport1(cityname){
@@ -29,8 +34,10 @@ export class PostService{
            this.posts1=[resData];
            this.updatedPost1.next([...this.posts1]);
        })
-   
-           setInterval(()=>{
+
+       clearInterval(this.interval1);
+
+           this.interval1=setInterval(()=>{
    
                this.http.get(link).subscribe((resData)=>{
                    this.posts1=[];
@@ -38,8 +45,9 @@ export class PostService{
                this.updatedPost1.next([...this.posts1]);
            })
    
-           },30000)
+           },3000)
        
+           
 
     }
 
@@ -51,7 +59,11 @@ export class PostService{
         this.posts2=[resData];
         this.updatedPost2.next([...this.posts2]);
     })
-        setInterval(()=>{
+
+
+    clearInterval(this.interval2);
+
+    this.interval2=setInterval(()=>{
 const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9b41d6fd6bf6b93bac3fffbc3dd2768b`;
            this.http.get(link).subscribe((resData)=>{
                this.posts2=[];
@@ -73,7 +85,9 @@ const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9
     this.updatedPost3.next([...this.posts3]);
 })
 
-   setInterval(()=>{
+clearInterval(this.interval3);
+
+this.interval3=setInterval(()=>{
 
  const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9b41d6fd6bf6b93bac3fffbc3dd2768b`;
        this.http.get(link).subscribe((resData)=>{
@@ -96,7 +110,9 @@ const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9
                 this.updatedPost4.next([...this.posts4]);
             })
 
-        setInterval(()=>{
+            clearInterval(this.interval4);
+
+            this.interval4=setInterval(()=>{
 
         const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9b41d6fd6bf6b93bac3fffbc3dd2768b`;
                 this.http.get(link).subscribe((resData)=>{
