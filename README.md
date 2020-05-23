@@ -2,7 +2,9 @@
 
 ### Start The Application using below command
 
-### ionic serve
+### npm install     -      command to install dependecies
+
+### ionic serve     -      To start the application
 
 ## App Instructions
 
