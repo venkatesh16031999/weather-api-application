@@ -15,6 +15,10 @@ export class PostService{
     private updatedPost3= new Subject();
     private updatedPost4= new Subject();
 
+    private status=0;
+
+    private statusPost= new Subject();
+
     private interval1;
     private interval2;
     private interval3;
@@ -22,18 +26,25 @@ export class PostService{
 
     constructor( private http:HttpClient ){}
 
+    getStatus(){
+        return this.statusPost.asObservable();
+    }
+
      getReport1(cityname){
       
         
             const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9b41d6fd6bf6b93bac3fffbc3dd2768b`;
             this.http.get(link).subscribe((resData)=>{
-
-                console.log(resData);
-
                this.posts1=[];
            this.posts1=[resData];
            this.updatedPost1.next([...this.posts1]);
-       })
+           this.statusPost.next(0);
+       },
+       (err) => {
+           this.status=err.error.cod
+           this.statusPost.next(this.status);
+        }
+       )
 
        clearInterval(this.interval1);
 
@@ -43,9 +54,10 @@ export class PostService{
                    this.posts1=[];
                this.posts1=[resData];
                this.updatedPost1.next([...this.posts1]);
+               
            })
    
-           },3000)
+           },30000)
        
            
 
@@ -58,7 +70,12 @@ export class PostService{
             this.posts2=[];
         this.posts2=[resData];
         this.updatedPost2.next([...this.posts2]);
-    })
+        this.statusPost.next(0);
+    },
+    (err) => {
+        this.status=err.error.cod
+        this.statusPost.next(this.status);
+     })
 
 
     clearInterval(this.interval2);
@@ -83,7 +100,11 @@ const link=`http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9
         this.posts3=[];
     this.posts3=[resData];
     this.updatedPost3.next([...this.posts3]);
-})
+    this.statusPost.next(0);
+}, (err) => {
+    this.status=err.error.cod
+    this.statusPost.next(this.status);
+ })
 
 clearInterval(this.interval3);
 
@@ -108,7 +129,12 @@ this.interval3=setInterval(()=>{
                     this.posts4=[];
                 this.posts4=[resData];
                 this.updatedPost4.next([...this.posts4]);
-            })
+                this.statusPost.next(0);
+            }, (err) => {
+                this.status=err.error.cod
+                this.statusPost.next(this.status);
+                
+             })
 
             clearInterval(this.interval4);
 
