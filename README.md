@@ -4,6 +4,11 @@
 
 ### ionic serve
 
+## App Instructions
+
+### 1. Contains serveral number of panel
+### 2. Click Edit City
+### 3. Specify city name to get Weather Report for that city
 
 # Ionic NativeScript
 
