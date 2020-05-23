@@ -1,0 +1,231 @@
+<ion-toolbar color="primary">
+  <ion-title>Weather App</ion-title>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-gird>
+    <ion-row *ngIf="cityPanel==1">
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card>
+          <ion-card-header class="text-center">
+            <ion-card-title>Select City</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center">
+            <ion-input [(ngModel)]="cityname" width-100 placeholder="Enter City Name"></ion-input>
+            <section class="full-width" style="border-radius: 5px;">
+              <ion-button expand="full" (click)="findweather(cityPanel)" color="secondary">Find Weather</ion-button>
+            </section>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card style="width: 80vw;">
+          <ion-card-header class="text-center">
+            <ion-button expand="full" style="margin-bottom: 10px;" (click)="enableSelect(1)" color="secondary">Edit City</ion-button>
+            <ion-card-subtitle>City Details </ion-card-subtitle>
+            <ion-card-title *ngIf="weatherdata.name" style="border-bottom: 2px solid#3dc2ff;" >{{weatherdata.name}}</ion-card-title>
+            <ion-card-title *ngIf="weatherdata.length==0" >No City Entered</ion-card-title>
+            <ion-gird *ngIf="weatherdata.length!=0">
+              <ion-row>
+                <ion-col>
+                  <img src="http://openweathermap.org/img/wn/{{weatherdata.weather[0].icon}}@2x.png" width="150px" alt="">
+                  <p><b>Condition : </b>{{weatherdata.weather[0].main}}</p>
+                  <p><b>Description : </b>{{weatherdata.weather[0].description}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/summer.png" alt="">
+                  <p>{{weatherdata.main.temp}}</p>
+                </ion-col>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/wind.png" alt="">
+                  <p>{{weatherdata.wind.speed}} Speed</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p><b>Longitude :</b>{{weatherdata.coord.lon}}</p>
+                </ion-col>
+                <ion-col>
+                  <p><b>Latitute :</b>{{weatherdata.coord.lat}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-gird>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="cityPanel==2">
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card>
+          <ion-card-header class="text-center">
+            <ion-card-title>Select City</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center">
+            <ion-input [(ngModel)]="cityname1" width-100 placeholder="Enter City Name"></ion-input>
+            <section class="full-width" style="border-radius: 5px;">
+              <ion-button expand="full" (click)="findweather(cityPanel)" color="secondary">Find Weather</ion-button>
+            </section>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card style="width: 80vw;">
+          <ion-card-header class="text-center">
+            <ion-button expand="full" style="margin-bottom: 10px;" (click)="enableSelect(2)" color="secondary">Edit City</ion-button>
+            <ion-card-subtitle>City Details</ion-card-subtitle>
+            <ion-card-title *ngIf="weatherdata1.name" style="border-bottom: 2px solid#3dc2ff;" >{{weatherdata1.name}}</ion-card-title>
+            <ion-card-title *ngIf="weatherdata1.length==0" >No City Entered</ion-card-title>
+            <ion-gird *ngIf="weatherdata1.length!=0">
+              <ion-row>
+                <ion-col>
+                  <img src="http://openweathermap.org/img/wn/{{weatherdata1.weather[0].icon}}@2x.png" alt="">
+                  <p><b>Condition : </b>{{weatherdata1.weather[0].main}}</p>
+                  <p><b>Description : </b>{{weatherdata1.weather[0].description}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/summer.png" alt="">
+                  <p>{{weatherdata1.main.temp}}</p>
+                </ion-col>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/wind.png" alt="">
+                  <p>{{weatherdata1.wind.speed}} Speed</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p><b>Longitude :</b>{{weatherdata1.coord.lon}}</p>
+                </ion-col>
+                <ion-col>
+                  <p><b>Latitute :</b>{{weatherdata1.coord.lat}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-gird>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="cityPanel==3">
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card>
+          <ion-card-header class="text-center">
+            <ion-card-title>Select City</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center">
+            <ion-input [(ngModel)]="cityname2" width-100 placeholder="Enter City Name"></ion-input>
+            <section class="full-width" style="border-radius: 5px;">
+              <ion-button expand="full" (click)="findweather(cityPanel)" color="secondary">Find Weather</ion-button>
+            </section>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card style="width: 80vw;">
+          <ion-card-header class="text-center">
+            <ion-button expand="full" style="margin-bottom: 10px;" (click)="enableSelect(3)" color="secondary">Edit City</ion-button>
+            <ion-card-subtitle>City Details</ion-card-subtitle>
+            <ion-card-title *ngIf="weatherdata2.name" style="border-bottom: 2px solid#3dc2ff;" >{{weatherdata2.name}}</ion-card-title>
+            <ion-card-title *ngIf="weatherdata2.length==0" >No City Entered</ion-card-title>
+            <ion-gird *ngIf="weatherdata2.length!=0">
+              <ion-row>
+                <ion-col>
+                  <img src="http://openweathermap.org/img/wn/{{weatherdata2.weather[0].icon}}@2x.png" alt="">
+                  <p><b>Condition : </b>{{weatherdata2.weather[0].main}}</p>
+                  <p><b>Description : </b>{{weatherdata2.weather[0].description}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/summer.png" alt="">
+                  <p>{{weatherdata2.main.temp}}</p>
+                </ion-col>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/wind.png" alt="">
+                  <p>{{weatherdata2.wind.speed}} Speed</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p><b>Longitude :</b>{{weatherdata2.coord.lon}}</p>
+                </ion-col>
+                <ion-col>
+                  <p><b>Latitute :</b>{{weatherdata2.coord.lat}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-gird>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="cityPanel==4">
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card>
+          <ion-card-header class="text-center">
+            <ion-card-title>Select City</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center">
+            <ion-input [(ngModel)]="cityname3" width-100 placeholder="Enter City Name"></ion-input>
+            <section class="full-width" style="border-radius: 5px;">
+              <ion-button expand="full" (click)="findweather(cityPanel)" color="secondary">Find Weather</ion-button>
+            </section>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col width-100 class="d-flex justify-content-center">
+        <ion-card style="width: 80vw;">
+          <ion-card-header class="text-center">
+            <ion-button expand="full" style="margin-bottom: 10px;" (click)="enableSelect(4)" color="secondary">Edit City</ion-button>
+            <ion-card-subtitle>City Details</ion-card-subtitle>
+            <ion-card-title *ngIf="weatherdata3.name" style="border-bottom: 2px solid#3dc2ff;" >{{weatherdata3.name}}</ion-card-title>
+            <ion-card-title *ngIf="weatherdata3.length==0" >No City Entered</ion-card-title>
+            <ion-gird *ngIf="weatherdata3.length!=0">
+              <ion-row>
+                <ion-col>
+                  <img src="http://openweathermap.org/img/wn/{{weatherdata3.weather[0].icon}}@2x.png" alt="">
+                  <p><b>Condition : </b>{{weatherdata3.weather[0].main}}</p>
+                  <p><b>Description : </b>{{weatherdata3.weather[0].description}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/summer.png" alt="">
+                  <p>{{weatherdata3.main.temp}}</p>
+                </ion-col>
+                <ion-col>
+                  <img src="https://img.icons8.com/color/2x/wind.png" alt="">
+                  <p>{{weatherdata3.wind.speed}} Speed</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p><b>Longitude :</b>{{weatherdata3.coord.lon}}</p>
+                </ion-col>
+                <ion-col>
+                  <p><b>Latitute :</b>{{weatherdata3.coord.lat}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-gird>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-gird>
+</ion-content>
